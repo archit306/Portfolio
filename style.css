@@ -2,50 +2,71 @@
 
 :root {
     --primary-color: #2c3e50;
-    --secondary-color: #3498db;
-    --background-color: #f4f7f6;
+    --secondary-color: #ff6f61;
+    --accent-color: #6dd5ed;
+    --background-gradient: linear-gradient(120deg, #fcb69f 0%, #ffecd2 100%);
     --card-bg-color: #ffffff;
     --text-color: #333;
     --header-text-color: #ffffff;
-    --border-radius: 8px;
-    --shadow: 0 4px 8px rgba(0,0,0,0.1);
+    --border-radius: 14px;
+    --shadow: 0 8px 24px rgba(44,62,80,0.12);
 }
 
 body {
     font-family: 'Roboto', sans-serif;
-    background-color: var(--background-color);
+    background: var(--background-gradient);
+    background-size: 200% 200%;
+    animation: gradientMove 8s ease-in-out infinite;
     color: var(--text-color);
     margin: 0;
     padding: 20px;
-    line-height: 1.6;
+    line-height: 1.7;
+}
+
+@keyframes gradientMove {
+    0% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+    100% { background-position: 0% 50%; }
 }
 
 .container {
     max-width: 1000px;
-    margin: 0 auto;
-    background: transparent;
+    margin: 40px auto;
+    background: rgba(255,255,255,0.85);
+    border-radius: var(--border-radius);
+    box-shadow: var(--shadow);
+    padding: 30px 24px;
 }
 
 .main-header {
-    background: var(--primary-color);
+    background: linear-gradient(90deg, var(--primary-color) 60%, var(--secondary-color) 100%);
     color: var(--header-text-color);
-    padding: 30px;
+    padding: 36px 20px 28px 20px;
     border-radius: var(--border-radius);
-    margin-bottom: 20px;
+    margin-bottom: 28px;
     text-align: center;
+    box-shadow: 0 4px 16px rgba(44,62,80,0.18);
+    position: relative;
+    animation: fadeInDown 1s;
 }
 
-.main-header .header-content h1 {
-    margin: 0;
-    font-size: 2.8em;
+@keyframes fadeInDown {
+    from { opacity: 0; transform: translateY(-40px);}
+    to { opacity: 1; transform: translateY(0);}
+}
+
+.header-content h1 {
+    font-size: 2.8rem;
+    letter-spacing: 2px;
+    margin-bottom: 8px;
     font-weight: 700;
+    text-shadow: 2px 2px 8px rgba(44,62,80,0.12);
 }
 
-.main-header .header-content p {
-    margin: 5px 0 20px;
-    font-size: 1.2em;
-    font-weight: 300;
-    color: var(--secondary-color);
+.header-content p {
+    font-size: 1.3rem;
+    font-weight: 400;
+    margin-bottom: 0;
 }
 
 .contact-info {
@@ -65,46 +86,62 @@ body {
 }
 
 .contact-info a {
-    color: var(--header-text-color);
+    color: #f7f7f7;
     text-decoration: none;
-    transition: color 0.3s;
+    transition: color 0.2s;
 }
 
 .contact-info a:hover {
-    color: var(--secondary-color);
+    color: var(--accent-color);
+    text-decoration: underline;
 }
 
 .contact-info i {
+    color: var(--accent-color);
     margin-right: 8px;
-    color: var(--secondary-color);
 }
 
 .card {
     background: var(--card-bg-color);
-    padding: 25px;
-    margin-bottom: 20px;
     border-radius: var(--border-radius);
     box-shadow: var(--shadow);
-    border-left: 5px solid var(--secondary-color);
+    padding: 24px 20px;
+    margin-bottom: 24px;
+    transition: transform 0.2s, box-shadow 0.2s;
+    position: relative;
+    overflow: hidden;
+    animation: fadeInUp 1s;
+}
+
+@keyframes fadeInUp {
+    from { opacity: 0; transform: translateY(40px);}
+    to { opacity: 1; transform: translateY(0);}
 }
 
 .card:hover {
-    box-shadow: 0 8px 16px rgba(44, 62, 80, 0.15);
-    transform: translateY(-2px);
-    transition: box-shadow 0.3s, transform 0.3s;
+    transform: translateY(-6px) scale(1.02);
+    box-shadow: 0 12px 32px rgba(44,62,80,0.18);
+    border-left: 6px solid var(--secondary-color);
 }
 
 .card h2 {
-    margin-top: 0;
-    color: var(--primary-color);
-    border-bottom: 2px solid #ddd; /* Slightly darker for contrast */
-    padding-bottom: 10px;
-    margin-bottom: 20px;
-    font-size: 1.5em;
+    color: var(--secondary-color);
+    font-size: 1.4rem;
+    margin-bottom: 16px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-weight: 700;
+    letter-spacing: 1px;
 }
 
 .card h2 i {
-    margin-right: 12px;
+    color: var(--accent-color);
+    font-size: 1.2em;
+    transition: transform 0.3s;
+}
+.card h2:hover i {
+    transform: rotate(-15deg) scale(1.2);
 }
 
 .education-item, .project-item {
@@ -117,70 +154,95 @@ body {
 }
 
 .education-item p {
-    margin: 0;
+    margin-bottom: 12px;
+    font-size: 1rem;
 }
 
 .row {
     display: flex;
-    gap: 20px;
+    gap: 24px;
+    flex-wrap: wrap;
 }
 
 .col {
-    flex: 1;
-}
-
-.card ul {
-    padding-left: 20px;
-    margin: 0;
-}
-
-.card ul li {
-    margin-bottom: 10px;
+    flex: 1 1 340px;
+    min-width: 320px;
 }
 
 .skills-grid {
     display: flex;
     flex-wrap: wrap;
     gap: 10px;
+    margin: 0;
+    padding: 0;
+    list-style: none;
 }
-
+.skills-grid li {
+    margin: 0;
+    padding: 0;
+}
 .skills-grid span {
-    background-color: #eaf2f8;
-    color: var(--primary-color);
-    padding: 5px 12px;
-    border-radius: 15px;
-    font-size: 0.9em;
+    display: inline-block;
+    background: linear-gradient(90deg, var(--secondary-color) 60%, var(--accent-color) 100%);
+    color: #fff;
+    padding: 7px 18px;
+    border-radius: 20px;
+    font-size: 1rem;
     font-weight: 500;
+    box-shadow: 0 2px 8px rgba(44,62,80,0.08);
+    transition: background 0.3s, transform 0.3s;
+    cursor: pointer;
+    animation: popIn 0.8s;
+}
+.skills-grid span:hover {
+    background: linear-gradient(90deg, var(--accent-color) 60%, var(--secondary-color) 100%);
+    transform: scale(1.12);
 }
 
-a:focus, button:focus {
-    outline: 2px solid var(--secondary-color);
-    outline-offset: 2px;
+@keyframes popIn {
+    from { opacity: 0; transform: scale(0.7);}
+    to { opacity: 1; transform: scale(1);}
+}
+
+ul {
+    margin: 0 0 0 18px;
+    padding: 0;
+}
+
+li {
+    margin-bottom: 10px;
+    font-size: 1.05rem;
 }
 
 .main-footer {
     text-align: center;
-    padding: 20px;
-    color: #555; /* Improved contrast */
-    font-size: 0.95em;
-    background: #f4f7f6;
-    border-radius: var(--border-radius);
+    padding: 18px 0 0 0;
+    color: var(--primary-color);
+    font-size: 1.05em;
+    background: none;
     margin-top: 30px;
+    font-weight: 500;
+    letter-spacing: 1px;
 }
 
-@media (max-width: 768px) {
+@media (max-width: 800px) {
     .container {
-        padding: 10px;
+        padding: 12px 6px;
     }
     .row {
         flex-direction: column;
         gap: 0;
     }
-    .card {
-        width: 100%;
-        margin-bottom: 15px;
+    .col {
+        min-width: 100%;
     }
     .main-header {
-        padding: 20px;
+        padding: 24px 8px;
+    }
+    .card {
+        padding: 16px 10px;
+    }
+    .header-content h1 {
+        font-size: 2rem;
     }
 }
